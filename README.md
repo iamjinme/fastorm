@@ -129,7 +129,7 @@ const posts = await User.join({
 
 ## Documentation
 
-You can find more detailed documentation [here](https://github.com/ldpenal/fastorm/tree/master/documentation). You should also check various code [examples](https://github.com/ldpenal/fastorm/tree/master/examples) to understand advanced concepts.
+You can find more detailed documentation [here](https://github.com/mirabalj/fastorm/tree/master/documentation). You should also check various code [examples](https://github.com/mirabalj/fastorm/tree/master/examples) to understand advanced concepts.
 
 ## Acknowledgements
 
@@ -137,7 +137,7 @@ You can find more detailed documentation [here](https://github.com/ldpenal/fasto
 
 ## Contributing
 
-Want to improve something in `fastorm`. Please check [Contributing.md](https://github.com/ldpenal/fastorm/Contributing.md) for detailed instruction on how to get started.
+Want to improve something in `fastorm`. Please check [Contributing.md](https://github.com/mirabalj/fastorm/Contributing.md) for detailed instruction on how to get started.
 
 
 [npm-image]: https://img.shields.io/npm/v/mysql2.svg
