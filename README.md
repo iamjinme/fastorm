@@ -124,7 +124,7 @@ const posts = await User.join({
 ## Authors
 
 - Jinme Mirabal @mirabalj
-- Leon Peña @lpenal
+- Leon Peña @ldpenal
 - Sergio Cruz
 
 ## Documentation

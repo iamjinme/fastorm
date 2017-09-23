@@ -149,10 +149,76 @@ class Model {
    * Paginate results for query;
    * @param {Object} options
    */
-  async paginate(options) {
-    // TODO implement this thing, remove Console::log;
+  async paginate({
+    sinceId, maxId, limit = 1,
+    select, where = {},
+    keyPaginated = 'id', reverse = false,
+  } = {}) {
+    try {
+      const lsThanE = reverse ? '>=' : '<=';
+      const lsThan = reverse ? '>' : '<';
+      const gsThan = reverse ? '<' : '>';
+      // Convert string to work with <=> conditionals
+      const stringWhere = this.parse({ where }).where.slice(5);
+      let stringFindWhere;
+      // Conditional to search since Id
+      if (sinceId) {
+        stringFindWhere = `${stringWhere} AND ${keyPaginated} ${lsThanE} ${sinceId}`;
+      }
+      // Conditional to search until Id
+      if (maxId) {
+        stringFindWhere = `${stringWhere} AND ${keyPaginated} ${gsThan} ${maxId}`;
+      }
+
+      // Assign order of search
+      const order = {};
+      order[keyPaginated] = reverse ? 0 : 1;
+
+      // Execute query with limit
+      const objects = await this.find({
+        where: stringFindWhere,
+        limit,
+        columns: select,
+        order,
+      });
+
+      let nextCursor = null;
+      const len = objects.length;
+
+      // Search fine? create a cursor!
+      if (len) {
+        const lastCursor = objects[len - 1][keyPaginated];
+        const stringNextCursorWhere = `${stringWhere} AND ${keyPaginated} ${lsThan} ${lastCursor}`;
+        // Find next cursor
+        const nextObject = await this.find({
+          where: stringNextCursorWhere,
+          order,
+          limit: 1,
+        });
+        // Exist next cursor?
+        if (nextObject) {
+          nextCursor = nextObject[keyPaginated];
+        }
+      }
+
+      // Create paginate object
+      const objectReturn = {
+        objects,
+        nextCursor,
+      };
+
+      // Return paginate
+      return objectReturn;
+    } catch (err) {
+      // Catch error and send to callback
+      throw err;
+    }
   }
 
+  /**
+   * Execute 'raw' queries;
+   * @param {Object} options
+   */
   async query(string) {
     return await this.connection.execute(string);
   }
