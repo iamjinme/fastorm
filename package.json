@@ -1,11 +1,11 @@
 {
   "name": "fastorm",
   "version": "0.0.1",
-  "description": "Module to avoid boilerplate creating MySQL models.",
+  "description": "MySQL ORM for Node.js based on node-mysql2.",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://sirdracula@bitbucket.org/geek-developers/fastorm.git"
+    "url": "https://github.com/mirabalj/fastorm.git"
   },
   "scripts": {
     "pretest": "npm run lint || true",
