@@ -122,9 +122,10 @@ const posts = await User.join({
 
 ```
 ## Authors
-Jinme Mirabal @mirabalj
-Leon Peña @lpenal
-Sergio Cruz
+
+- Jinme Mirabal @mirabalj
+- Leon Peña @lpenal
+- Sergio Cruz
 
 ## Documentation
 
