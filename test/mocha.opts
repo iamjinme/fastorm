@@ -1,0 +1,5 @@
+test
+--recursive
+-u bdd
+-R spec
+--compilers js:babel-core/register

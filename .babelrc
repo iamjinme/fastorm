@@ -1,0 +1,7 @@
+{
+  "ignore": ["/node_modules(?![/]arrow-mocha)/"],
+  "presets": [
+    "node6",
+    "stage-3"
+  ]
+}
