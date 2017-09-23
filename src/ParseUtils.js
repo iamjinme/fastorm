@@ -1,6 +1,8 @@
 import _ from 'lodash';
 
 const parseWhere = (where) => {
+  if (typeof where === 'string') return `WHERE ${where}`;
+
   const properties = Object.keys(where);
 
   if (properties.length === 0) throw new Error('EMPTY_WHERE');
