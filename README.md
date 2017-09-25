@@ -83,10 +83,10 @@ FastORM provides `insert`, `delete`, `join` and other methods within the model t
 
 ```js
 // get the ORM
-import { Model, Connection } from 'fastorm';
+import { Model, createConnection } from 'fastorm';
 
 // create the connection to database
-const connection = await Connection({
+const connection = await createConnection({
   host: 'localhost',
   user: 'root',
   database: 'test'
