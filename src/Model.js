@@ -39,7 +39,8 @@ class Model {
     if (parsed.limit) LIMIT = parsed.limit;
     if (parsed.offset) OFFSET = parsed.offset;
 
-    return (await this.connection.execute([METHOD, COLUMNS, FROM, WHERE, ORDER_BY, LIMIT, OFFSET].join(' ')))[0];
+    const query = [METHOD, COLUMNS, FROM, WHERE, ORDER_BY, LIMIT, OFFSET].join(' ');
+    return (await this.connection.execute(query))[0];
   }
 
   /**
@@ -151,23 +152,31 @@ class Model {
    */
   async paginate({
     sinceId, maxId, limit = 1,
-    select, where = {},
+    select = {}, where = {},
     keyPaginated = 'id', reverse = false,
   } = {}) {
     try {
-      const lsThanE = reverse ? '>=' : '<=';
-      const lsThan = reverse ? '>' : '<';
-      const gsThan = reverse ? '<' : '>';
+      const lsThanE = reverse ? '<=' : '>=';
+      const lsThan = reverse ? '<' : '>';
+      const gsThan = reverse ? '>' : '<';
       // Convert string to work with <=> conditionals
       const stringWhere = this.parse({ where }).where.slice(5);
       let stringFindWhere;
       // Conditional to search since Id
       if (sinceId) {
-        stringFindWhere = `${stringWhere} AND ${keyPaginated} ${lsThanE} ${sinceId}`;
+        if (typeof sinceId === 'string') {
+          stringFindWhere = `${stringWhere} AND ${keyPaginated} ${lsThanE} '${sinceId}'`;
+        } else {
+          stringFindWhere = `${stringWhere} AND ${keyPaginated} ${lsThanE} ${sinceId}`;
+        }
       }
       // Conditional to search until Id
       if (maxId) {
-        stringFindWhere = `${stringWhere} AND ${keyPaginated} ${gsThan} ${maxId}`;
+        if (typeof maxId === 'string') {
+          stringFindWhere = `${stringWhere} AND ${keyPaginated} ${gsThan} '${maxId}'`;
+        } else {
+          stringFindWhere = `${stringWhere} AND ${keyPaginated} ${gsThan} ${maxId}`;
+        }
       }
 
       // Assign order of search
@@ -188,16 +197,17 @@ class Model {
       // Search fine? create a cursor!
       if (len) {
         const lastCursor = objects[len - 1][keyPaginated];
-        const stringNextCursorWhere = `${stringWhere} AND ${keyPaginated} ${lsThan} ${lastCursor}`;
+        const stringNextCursorWhere = `${stringWhere} AND ${keyPaginated} ${lsThan} '${lastCursor}'`;
         // Find next cursor
         const nextObject = await this.find({
           where: stringNextCursorWhere,
           order,
           limit: 1,
         });
+
         // Exist next cursor?
-        if (nextObject) {
-          nextCursor = nextObject[keyPaginated];
+        if (nextObject.length !== 0) {
+          nextCursor = nextObject[0][keyPaginated];
         }
       }
 
