@@ -140,18 +140,16 @@ You can find more detailed documentation [here](https://github.com/mirabalj/fast
 Want to improve something in `fastorm`. Please check [Contributing.md](https://github.com/mirabalj/fastorm/Contributing.md) for detailed instruction on how to get started.
 
 
-[npm-image]: https://img.shields.io/npm/v/mysql2.svg
-[npm-url]: https://npmjs.org/package/mysql2
-[node-version-image]: http://img.shields.io/node/v/mysql2.svg
+[npm-image]: https://img.shields.io/npm/v/fastorm.svg
+[npm-url]: https://npmjs.org/package/fastorm
+[node-version-image]: http://img.shields.io/node/v/fastorm.svg
 [node-version-url]: http://nodejs.org/download/
-[travis-image]: https://img.shields.io/travis/sidorares/node-mysql2/master.svg?label=linux
-[travis-url]: https://travis-ci.org/sidorares/node-mysql2
-[appveyor-image]: https://img.shields.io/appveyor/ci/sidorares/node-mysql2/master.svg?label=windows
-[appveyor-url]: https://ci.appveyor.com/project/sidorares/node-mysql2
-[downloads-image]: https://img.shields.io/npm/dm/mysql2.svg
-[downloads-url]: https://npmjs.org/package/mysql2
-[license-url]: https://github.com/sidorares/node-mysql2/blob/master/License
-[license-image]: https://img.shields.io/npm/l/mysql2.svg?maxAge=2592000
+[travis-image]: https://img.shields.io/travis/mirabalj/fastorm/master.svg?label=linux
+[travis-url]: https://travis-ci.org/mirabalj/fastorm
+[downloads-image]: https://img.shields.io/npm/dm/fastorm.svg
+[downloads-url]: https://npmjs.org/package/fastorm
+[license-url]: https://github.com/mirabalj/fastorm/blob/master/License
+[license-image]: https://img.shields.io/npm/l/fastorm.svg?maxAge=2592000
 [node-mysql]: https://github.com/mysqljs/mysql
 [node-mysql2]: https://github.com/sidorares/node-mysql2
 [sequalize]: https://github.com/sequelize/sequelize
