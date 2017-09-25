@@ -14,6 +14,7 @@ __Table of contents__
   - [Installation](#installation)
   - [First Query](#first-query)
   - [Not only find method available](#not-only-find-method-available)
+  - [Paginate results](#paginate-results)
   - [Authors](#authors)
   - [Documentation](#documentation)
   - [Acknowledgements](#acknowledgements)
@@ -123,7 +124,7 @@ const posts = await User.join({
 ```
 ## Paginate results
 
-We create a `paginate` method to facilite managing cursors with lots of information or simply paginate results of any query. In a moment of this history we create an paginate to Sequalize available on [Github](https://github.com/mirabalj/sequelize-paginate-cursor).
+We create a `paginate` method to facilite managing cursors with lots of information or simply paginate results of any query. In a moment of this history we create an paginate to Sequalize available [here](https://github.com/mirabalj/sequelize-paginate-cursor).
 
 ```js
 
@@ -143,9 +144,9 @@ const juanes_paginated = await User.paginate({
 
 ## Authors
 
-- Jinme Mirabal @mirabalj
-- Leon Peña @ldpenal
-- Sergio Cruz
+- Jinme Mirabal [@mirabalj](https://github.com/mirabalj)
+- Leon Peña [@ldpenal](https://github.com/ldpenal)
+- Sergio Cruz [@sergiocruza](https://github.com/sergiocruza)
 
 ## Documentation
 
