@@ -142,7 +142,7 @@ Want to improve something in `fastorm`. Please check [Contributing.md](https://g
 
 [npm-image]: https://img.shields.io/npm/v/fastorm.svg
 [npm-url]: https://npmjs.org/package/fastorm
-[node-version-image]: https://img.shields.io/node/v/gh-badges.svg
+[node-version-image]: https://img.shields.io/node/v/fastorm.svg
 [node-version-url]: http://nodejs.org/download/
 [travis-image]: https://img.shields.io/badge/linux-tested-green.svg
 [travis-url]: https://travis-ci.org/mirabalj/fastorm
