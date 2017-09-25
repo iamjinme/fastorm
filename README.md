@@ -148,7 +148,7 @@ Want to improve something in `fastorm`. Please check [Contributing.md](https://g
 [travis-url]: https://travis-ci.org/mirabalj/fastorm
 [downloads-image]: https://img.shields.io/npm/dm/fastorm.svg
 [downloads-url]: https://npmjs.org/package/fastorm
-[license-url]: https://github.com/mirabalj/fastorm/blob/master/License
+[license-url]: https://github.com/mirabalj/fastorm/blob/master/license
 [license-image]: https://img.shields.io/npm/l/fastorm.svg?maxAge=2592000
 [node-mysql]: https://github.com/mysqljs/mysql
 [node-mysql2]: https://github.com/sidorares/node-mysql2
