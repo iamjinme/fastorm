@@ -22,7 +22,6 @@
         "properties": false
       }
     ],
-		"mocha/no-exclusive-tests": "error",
-    "generator-star-spacing": 0
+		"mocha/no-exclusive-tests": "error"
   }
 }
