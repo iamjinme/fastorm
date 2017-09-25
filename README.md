@@ -142,14 +142,14 @@ Want to improve something in `fastorm`. Please check [Contributing.md](https://g
 
 [npm-image]: https://img.shields.io/npm/v/fastorm.svg
 [npm-url]: https://npmjs.org/package/fastorm
-[node-version-image]: http://img.shields.io/node/v/fastorm.svg
+[node-version-image]: https://img.shields.io/node/v/gh-badges.svg
 [node-version-url]: http://nodejs.org/download/
-[travis-image]: https://img.shields.io/travis/mirabalj/fastorm/master.svg?label=linux
+[travis-image]: https://img.shields.io/badge/linux-tested-green.svg
 [travis-url]: https://travis-ci.org/mirabalj/fastorm
 [downloads-image]: https://img.shields.io/npm/dm/fastorm.svg
 [downloads-url]: https://npmjs.org/package/fastorm
 [license-url]: https://github.com/mirabalj/fastorm/blob/master/license
-[license-image]: https://img.shields.io/npm/l/fastorm.svg?maxAge=2592000
+[license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [node-mysql]: https://github.com/mysqljs/mysql
 [node-mysql2]: https://github.com/sidorares/node-mysql2
 [sequalize]: https://github.com/sequelize/sequelize
