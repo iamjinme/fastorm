@@ -5,7 +5,7 @@ const parseWhere = (where) => {
 
   const properties = Object.keys(where);
 
-  if (properties.length === 0) throw new Error('EMPTY_WHERE');
+  if (properties.length === 0) return 'WHERE TRUE';
 
   const conditions = [];
   for (let i = 0; i < properties.length; i += 1) {
@@ -42,6 +42,8 @@ const parseOrderBy = (orderBy) => {
 
 const parseColumns = (columns) => {
   const properties = Object.keys(columns);
+
+  if (properties.length === 0) return '*';
 
   const columnsArray = [];
   for (let i = 0; i < properties.length; i += 1) {
