@@ -13,7 +13,7 @@ const parseWhere = (where) => {
 
     // TODO check if type validation is neeeded;
     const element = (typeof where[property] === 'string') ? `'${where[property]}'` : where[property];
-    conditions.push(`${property} = ${element}`);
+    conditions.push(`\`${property}\` = ${element}`);
 
     if (i !== properties.length - 1) {
       conditions.push('AND');
@@ -34,7 +34,7 @@ const parseOrderBy = (orderBy) => {
   for (let i = 0; i < properties.length; i += 1) {
     const property = properties[i];
     const order = orderBy[property] ? 'ASC' : 'DESC';
-    conditions.push(`${property} ${order}`);
+    conditions.push(`\`${property}\` ${order}`);
   }
 
   return `ORDER BY ${conditions.join(', ')} `;
@@ -50,7 +50,7 @@ const parseColumns = (columns) => {
     const property = properties[i];
 
     if (columns[property]) {
-      columnsArray.push(`${property}`);
+      columnsArray.push(`\`${property}\``);
     }
   }
 
@@ -66,7 +66,7 @@ const parseProperties = (properties) => {
   for (let i = 0; i < props.length; i += 1) {
     const property = props[i];
 
-    keys.push(property);
+    keys.push(`\`${property}\``);
     values.push((typeof properties[property] === 'string')
       ? `'${properties[property]}'`
       : properties[property]);
@@ -93,7 +93,7 @@ const parseSet = (set) => {
     ? `'${set[prop]}'`
     : set[prop];
 
-    setArray.push(`${prop} = ${data}`);
+    setArray.push(`\`${prop}\` = ${data}`);
   });
 
   setArray.push('updatedAt = current_timestamp()');
