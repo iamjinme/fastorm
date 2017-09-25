@@ -121,6 +121,26 @@ const posts = await User.join({
 })
 
 ```
+## Paginate results
+
+We create a `paginate` method to facilite managing cursors with lots of information or simply paginate results of any query. In a moment of this history we create an paginate to Sequalize available on [Github](https://github.com/mirabalj/sequelize-paginate-cursor).
+
+```js
+
+// Paginate all posts of user juan with columns: name, title and description
+// Return { objects, nextCursor } when objects are data found, and nextCursor
+// is the property keyPaginated of the next row used to paginate again (sinceId)
+const juanes_paginated = await User.paginate({
+    sinceId: null, // Not necessary in the first call to paginate
+    limit: 10, // Default 1
+    where: { name: 'juan' },
+    select: { name: 1, title: 1, description: 1 },
+    keyPaginated: 'document_id', // Optional used to order, default id
+    reverse: true // Optional, default false
+})
+
+```
+
 ## Authors
 
 - Jinme Mirabal @mirabalj
