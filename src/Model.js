@@ -153,7 +153,7 @@ class Model {
    * @param {Object} options
    */
   async paginate({
-    sinceId, maxId, limit = 1,
+    sinceId, maxId, limit = 10,
     select = {}, where = {},
     keyPaginated = 'id', reverse = false,
   } = {}) {
@@ -208,8 +208,8 @@ class Model {
         });
 
         // Exist next cursor?
-        if (nextObject.length !== 0) {
-          nextCursor = nextObject[0][keyPaginated];
+        if (keyPaginated in nextObject) {
+          nextCursor = nextObject[keyPaginated];
         }
       }
 
