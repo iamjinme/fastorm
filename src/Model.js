@@ -40,7 +40,9 @@ class Model {
     if (parsed.offset) OFFSET = parsed.offset;
 
     const query = [METHOD, COLUMNS, FROM, WHERE, ORDER_BY, LIMIT, OFFSET].join(' ');
-    return (await this.connection.execute(query))[0];
+    const response = (await this.connection.execute(query))[0];
+    if (options.limit === 1) return response[0];
+    return response;
   }
 
   /**
