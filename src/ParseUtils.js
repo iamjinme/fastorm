@@ -1,5 +1,31 @@
 import _ from 'lodash';
 
+const parseValue = (column, value) => {
+  if (typeof value !== 'object') return value;
+
+  const properties = Object.keys(value);
+
+  let parsed = '';
+  for (let i = 0; i < properties.length; i += 1) {
+    const property = properties[i];
+    let compare = '=';
+
+    if (property === '$ne') compare = '<>';
+    if (property === '$gt') compare = '>';
+    if (property === '$gte') compare = '>=';
+    if (property === '$lt') compare = '<';
+    if (property === '$lte') compare = '<=';
+
+    const element = (typeof value[property] === 'string') ? `'${value[property]}'` : value[property];
+    parsed = `${column} ${compare} ${element}`;
+
+    if (i !== properties.length - 1) {
+      parsed += ' AND ';
+    }
+  }
+  return parsed;
+};
+
 const parseWhere = (where) => {
   if (typeof where === 'string') return `WHERE ${where}`;
 
@@ -12,7 +38,7 @@ const parseWhere = (where) => {
     const property = properties[i];
 
     // TODO check if type validation is neeeded;
-    const element = (typeof where[property] === 'string') ? `'${where[property]}'` : where[property];
+    const element = (typeof where[property] === 'string') ? `'${where[property]}'` : parseValue(property, where[property]);
     conditions.push(`\`${property}\` = ${element}`);
 
     if (i !== properties.length - 1) {
