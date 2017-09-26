@@ -17,11 +17,7 @@ const parseValue = (column, value) => {
     if (property === '$lte') compare = '<=';
 
     const element = (typeof value[property] === 'string') ? `'${value[property]}'` : value[property];
-    if (i === 0) {
-      parsed += ` ${compare} ${element}`;
-    } else {
-      parsed += `\`${column}\` ${compare} ${element}`;
-    }
+    parsed += `\`${column}\` ${compare} ${element}`;
 
     if (i !== properties.length - 1) {
       parsed += ' AND ';
@@ -43,7 +39,11 @@ const parseWhere = (where) => {
 
     // TODO check if type validation is neeeded;
     const element = (typeof where[property] === 'string') ? `'${where[property]}'` : parseValue(property, where[property]);
-    conditions.push(`\`${property}\` = ${element}`);
+    if (typeof where[property] !== 'object') {
+      conditions.push(`\`${property}\` = ${element}`);
+    } else {
+      conditions.push(`${element}`);
+    }
 
     if (i !== properties.length - 1) {
       conditions.push('AND');
