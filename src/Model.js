@@ -24,7 +24,7 @@ class Model {
   async find(options) {
     if (typeof options !== 'object') throw new Error(Errors.INVALID_PARAMS);
     const METHOD = 'SELECT';
-    const FROM = `FROM ${this.name}`;
+    const FROM = `FROM \`${this.name}\``;
     let COLUMNS = '*';
     let WHERE = 'WHERE TRUE';
     let LIMIT = '';
@@ -51,7 +51,7 @@ class Model {
     if (typeof object !== 'object') throw new Error(Errors.INVALID_PARAMS);
 
     const METHOD = 'INSERT';
-    const INTO = `INTO ${this.name}`;
+    const INTO = `INTO \`${this.name}\``;
     let COLUMNS = '';
     let VALUES = '';
 
@@ -75,7 +75,7 @@ class Model {
     if (typeof options !== 'object') throw new Error(Errors.INVALID_PARAMS);
 
     const METHOD = 'DELETE';
-    const FROM = `FROM ${this.name}`;
+    const FROM = `FROM \`${this.name}\``;
     let WHERE = 'WHERE TRUE';
     let LIMIT = '';
     let ORDER_BY = '';
@@ -98,7 +98,7 @@ class Model {
     if (typeof set !== 'object') throw new Error(Errors.INVALID_PARAMS);
     if (typeof options !== 'object') throw new Error(Errors.INVALID_PARAMS);
 
-    const METHOD = `UPDATE ${this.name}`;
+    const METHOD = `UPDATE \`${this.name}\``;
     let WHERE = 'WHERE TRUE';
     let SET = '';
     let LIMIT = '';
@@ -127,7 +127,7 @@ class Model {
     if (inner.length === 0) throw new Error(Errors.RELATION_COLUMNS_NOT_PROVIDED);
 
     const METHOD = 'SELECT';
-    const FROM = `FROM ${this.name}`;
+    const FROM = `FROM \`${this.name}\``;
     let COLUMNS = '*';
     let WHERE = 'WHERE TRUE';
     let LIMIT = '';
@@ -165,17 +165,17 @@ class Model {
       // Conditional to search since Id
       if (sinceId) {
         if (typeof sinceId === 'string') {
-          stringFindWhere = `${stringWhere} AND ${keyPaginated} ${lsThanE} '${sinceId}'`;
+          stringFindWhere = `${stringWhere} AND \`${keyPaginated}\` ${lsThanE} '${sinceId}'`;
         } else {
-          stringFindWhere = `${stringWhere} AND ${keyPaginated} ${lsThanE} ${sinceId}`;
+          stringFindWhere = `${stringWhere} AND \`${keyPaginated}\` ${lsThanE} ${sinceId}`;
         }
       }
       // Conditional to search until Id
       if (maxId) {
         if (typeof maxId === 'string') {
-          stringFindWhere = `${stringWhere} AND ${keyPaginated} ${gsThan} '${maxId}'`;
+          stringFindWhere = `${stringWhere} AND \`${keyPaginated}\` ${gsThan} '${maxId}'`;
         } else {
-          stringFindWhere = `${stringWhere} AND ${keyPaginated} ${gsThan} ${maxId}`;
+          stringFindWhere = `${stringWhere} AND \`${keyPaginated}\` ${gsThan} ${maxId}`;
         }
       }
 
@@ -197,7 +197,7 @@ class Model {
       // Search fine? create a cursor!
       if (len) {
         const lastCursor = objects[len - 1][keyPaginated];
-        const stringNextCursorWhere = `${stringWhere} AND ${keyPaginated} ${lsThan} '${lastCursor}'`;
+        const stringNextCursorWhere = `${stringWhere} AND \`${keyPaginated}\` ${lsThan} '${lastCursor}'`;
         // Find next cursor
         const nextObject = await this.find({
           where: stringNextCursorWhere,
