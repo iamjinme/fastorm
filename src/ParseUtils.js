@@ -17,7 +17,11 @@ const parseValue = (column, value) => {
     if (property === '$lte') compare = '<=';
 
     const element = (typeof value[property] === 'string') ? `'${value[property]}'` : value[property];
-    parsed += `${column} ${compare} ${element}`;
+    if (i === 0) {
+      parsed += ` ${compare} ${element}`;
+    } else {
+      parsed += `\`${column}\` ${compare} ${element}`;
+    }
 
     if (i !== properties.length - 1) {
       parsed += ' AND ';
