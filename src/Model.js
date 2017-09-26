@@ -163,21 +163,21 @@ class Model {
       const gsThan = reverse ? '>' : '<';
       // Convert string to work with <=> conditionals
       const stringWhere = this.parse({ where }).where.slice(5);
-      let stringFindWhere;
+      let stringFindWhere = stringWhere;
       // Conditional to search since Id
       if (sinceId) {
         if (typeof sinceId === 'string') {
-          stringFindWhere = `${stringWhere} AND \`${keyPaginated}\` ${lsThanE} '${sinceId}'`;
+          stringFindWhere += ` AND \`${keyPaginated}\` ${lsThanE} '${sinceId}'`;
         } else {
-          stringFindWhere = `${stringWhere} AND \`${keyPaginated}\` ${lsThanE} ${sinceId}`;
+          stringFindWhere += ` AND \`${keyPaginated}\` ${lsThanE} ${sinceId}`;
         }
       }
       // Conditional to search until Id
       if (maxId) {
         if (typeof maxId === 'string') {
-          stringFindWhere = `${stringWhere} AND \`${keyPaginated}\` ${gsThan} '${maxId}'`;
+          stringFindWhere += ` AND \`${keyPaginated}\` ${gsThan} '${maxId}'`;
         } else {
-          stringFindWhere = `${stringWhere} AND \`${keyPaginated}\` ${gsThan} ${maxId}`;
+          stringFindWhere += ` AND \`${keyPaginated}\` ${gsThan} ${maxId}`;
         }
       }
 
