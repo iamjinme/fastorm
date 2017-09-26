@@ -208,7 +208,7 @@ class Model {
         });
 
         // Exist next cursor?
-        if (keyPaginated in nextObject) {
+        if (nextObject) {
           nextCursor = nextObject[keyPaginated];
         }
       }
