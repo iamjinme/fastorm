@@ -49,10 +49,10 @@ npm install --save fastorm
 
 ```js
 // get the ORM
-import { Model, Connection } from 'fastorm';
+import { Model, createConnection } from 'fastorm';
 
 // create the connection to database
-const connection = await Connection({
+const connection = await createConnection({
   host: 'localhost',
   user: 'root',
   database: 'test'
@@ -92,11 +92,21 @@ const connection = await createConnection({
   database: 'test'
 });
 
+// create other connection to other database and server
+const other_connection = await createConnection({
+  host: 'other_server',
+  user: 'root',
+  database: 'post'
+});
+
 // Create model to User table
 const User = new Model('User', connection);
 
 // Create model to Post table
 const Post = new Model('Post', connection);
+
+// Create model to Other table in other server (multiple connections, cool!)
+const Other = new Model('Other', other_connection);
 
 // Create user Maria with age 36 and not alive
 // IMPORTANT: automatically created_at and updated_at columns
