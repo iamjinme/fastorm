@@ -74,8 +74,9 @@ const all_juanes = User.find({ where: { name: 'juan', alive: true } })
 // Same with limit 5 and order by age DESC
 const only_five_juanes = User.find({ where: { name: 'juan', alive: true }, limit: 5, order: { age: 0 } })
 
-// Get all user with no name Juan and dead
-const all_no_juanes = User.find({ where: { name: { $ne: 'juan'}, alive: false } })
+// Get all user with name not equal to Juan and dead
+// Accept $ne, $lt, $lte, $gt, $gte as properties in value
+const all_no_juanes = User.find({ where: { name: { $ne: 'juan' }, alive: false } })
 
 ```
 
