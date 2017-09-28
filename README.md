@@ -32,6 +32,7 @@ FastORM is mostly compatible (and dependent) of [node-mysql2][node-mysql2] and s
  - Async/await support
  - Extended support for Encoding and Collation
  - Use objects as properties like some MongoDB ORM's
+ - Values as objects in where properties
  - Compression (inherited from node-mysql2)
  - Joins between two tables (for now)
  - Common methods for MySQL (find, insert, delete...)
@@ -72,6 +73,10 @@ const all_juanes = User.find({ where: { name: 'juan', alive: true } })
 
 // Same with limit 5 and order by age DESC
 const only_five_juanes = User.find({ where: { name: 'juan', alive: true }, limit: 5, order: { age: 0 } })
+
+// Get all user with name not equal to Juan and dead
+// Accept $ne, $lt, $lte, $gt, $gte as properties in value
+const all_no_juanes = User.find({ where: { name: { $ne: 'juan' }, alive: false } })
 
 ```
 
