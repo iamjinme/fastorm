@@ -140,8 +140,11 @@ const parseJoin = (source, target, inner = []) => {
   return `JOIN ${target} ON ${onClause}`;
 };
 
+const padWithZeroes = string => (`0${string}`).slice(-2);
+
 export {
   parseJoin,
+  padWithZeroes,
 };
 
 export default (query) => {
