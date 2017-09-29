@@ -1,6 +1,6 @@
 {
   "name": "fastorm",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "MySQL ORM for Node.js based on node-mysql2.",
   "main": "lib/index.js",
   "repository": {
