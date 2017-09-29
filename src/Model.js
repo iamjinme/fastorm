@@ -158,9 +158,9 @@ class Model {
     keyPaginated = 'id', reverse = false,
   } = {}) {
     try {
-      const lsThanE = reverse ? '<=' : '>=';
-      const lsThan = reverse ? '<' : '>';
-      const gsThan = reverse ? '>' : '<';
+      const lsThanE = reverse ? '>=' : '<=';
+      const lsThan = reverse ? '>' : '<';
+      const gsThan = reverse ? '<' : '>';
       // Convert string to work with <=> conditionals
       const stringWhere = this.parse({ where }).where.slice(5);
       let stringFindWhere = stringWhere;
@@ -183,7 +183,7 @@ class Model {
 
       // Assign order of search
       const order = {};
-      order[keyPaginated] = reverse ? 0 : 1;
+      order[keyPaginated] = reverse ? 1 : 0;
 
       // Execute query with limit
       const objects = await this.find({
