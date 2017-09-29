@@ -1,5 +1,5 @@
 import Errors from './errors';
-import parse, { parseJoin } from './ParseUtils';
+import parse, { parseJoin, padWithZeroes } from './ParseUtils';
 
 class Model {
 
@@ -198,7 +198,15 @@ class Model {
 
       // Search fine? create a cursor!
       if (len) {
-        const lastCursor = objects[len - 1][keyPaginated];
+        let lastCursor = objects[len - 1][keyPaginated];
+
+        if (lastCursor instanceof Date) {
+          // Gonna parse the Date from JS to DATETIME to MySQL;
+          lastCursor = `${[lastCursor.getFullYear(), padWithZeroes(lastCursor.getMonth() + 1),
+            padWithZeroes(lastCursor.getDate())].join('-')} ${[padWithZeroes(lastCursor.getHours()),
+            padWithZeroes(lastCursor.getMinutes()), padWithZeroes(lastCursor.getSeconds())].join(':')}`;
+        }
+
         const stringNextCursorWhere = `${stringWhere} AND \`${keyPaginated}\` ${lsThan} '${lastCursor}'`;
         // Find next cursor
         const nextObject = await this.find({
