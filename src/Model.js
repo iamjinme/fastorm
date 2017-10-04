@@ -41,7 +41,6 @@ class Model {
 
     const query = [METHOD, COLUMNS, FROM, WHERE, ORDER_BY, LIMIT, OFFSET].join(' ');
     const response = (await this.connection.execute(query))[0];
-    this.connection.unprepare(query).then(() => undefined);
 
     if (options.limit === 1) return response[0];
     return response;
@@ -70,7 +69,6 @@ class Model {
 
     const query = [METHOD, INTO, COLUMNS, VALUES].join(' ');
     const response = (await this.connection.execute(query))[0];
-    this.connection.unprepare(query).then(() => undefined);
 
     return response;
   }
@@ -96,7 +94,6 @@ class Model {
 
     const query = [METHOD, FROM, WHERE, ORDER_BY, LIMIT].join(' ');
     const response = (await this.connection.execute(query))[0];
-    this.connection.unprepare(query).then(() => undefined);
 
     return response;
   }
@@ -124,7 +121,6 @@ class Model {
 
     const query = [METHOD, SET, WHERE, ORDER_BY, LIMIT].join(' ');
     const response = (await this.connection.execute(query))[0];
-    this.connection.unprepare(query).then(() => undefined);
 
     return response;
   }
@@ -161,7 +157,6 @@ class Model {
 
     const query = [METHOD, COLUMNS, FROM, JOIN, WHERE, ORDER_BY, LIMIT, OFFSET].join(' ');
     const response = (await this.connection.execute(query))[0];
-    this.connection.unprepare(query).then(() => undefined);
 
     return response;
   }
@@ -259,7 +254,6 @@ class Model {
    */
   async query(string) {
     const response = await this.connection.execute(string);
-    this.connection.unprepare(string).then(() => undefined);
 
     return response;
   }
