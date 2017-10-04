@@ -34,7 +34,7 @@
     "debug": "2.2.0",
     "dotenv": "2.0.0",
     "lodash": "4.15.0",
-    "mysql2": "1.4.2",
+    "mysql2": "git+https://github.com/mirabalj/node-mysql2.git",
     "rimraf": "2.5.4"
   },
   "devDependencies": {
