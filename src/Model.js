@@ -41,6 +41,8 @@ class Model {
 
     const query = [METHOD, COLUMNS, FROM, WHERE, ORDER_BY, LIMIT, OFFSET].join(' ');
     const response = (await this.connection.execute(query))[0];
+    this.connection.unprepare(query).then((result) => undefined);
+
     if (options.limit === 1) return response[0];
     return response;
   }
@@ -66,7 +68,11 @@ class Model {
       VALUES = `VALUES ${parsed.properties.values}`;
     }
 
-    return (await this.connection.execute([METHOD, INTO, COLUMNS, VALUES].join(' ')))[0];
+    const query = [METHOD, INTO, COLUMNS, VALUES].join(' ');
+    const response = (await this.connection.execute(query))[0];
+    this.connection.unprepare(query).then((result) => undefined);
+
+    return response;
   }
 
   /**
@@ -88,7 +94,11 @@ class Model {
     if (parsed.order) ORDER_BY = parsed.order;
     if (parsed.limit) LIMIT = parsed.limit;
 
-    return (await this.connection.execute([METHOD, FROM, WHERE, ORDER_BY, LIMIT].join(' ')))[0];
+    const query = [METHOD, FROM, WHERE, ORDER_BY, LIMIT].join(' ');
+    const response = (await this.connection.execute(query))[0];
+    this.connection.unprepare(query).then((result) => undefined);
+
+    return response;
   }
 
   /**
@@ -112,7 +122,11 @@ class Model {
     if (parsed.order) ORDER_BY = parsed.order;
     if (parsed.limit) LIMIT = parsed.limit;
 
-    return (await this.connection.execute([METHOD, SET, WHERE, ORDER_BY, LIMIT].join(' ')))[0];
+    const query = [METHOD, SET, WHERE, ORDER_BY, LIMIT].join(' ');
+    const response = (await this.connection.execute(query))[0];
+    this.connection.unprepare(query).then((result) => undefined);
+
+    return response;
   }
 
   /**
@@ -145,7 +159,11 @@ class Model {
     if (parsed.limit) LIMIT = parsed.limit;
     if (parsed.offset) OFFSET = parsed.offset;
 
-    return (await this.connection.execute([METHOD, COLUMNS, FROM, JOIN, WHERE, ORDER_BY, LIMIT, OFFSET].join(' ')))[0];
+    const query = [METHOD, COLUMNS, FROM, JOIN, WHERE, ORDER_BY, LIMIT, OFFSET].join(' ');
+    const response = (await this.connection.execute(query))[0];
+    this.connection.unprepare(query).then((result) => undefined);
+
+    return response;
   }
 
   /**
@@ -240,7 +258,10 @@ class Model {
    * @param {Object} options
    */
   async query(string) {
-    return await this.connection.execute(string);
+    const response = await this.connection.execute(string);
+    this.connection.unprepare(string).then((result) => undefined);
+
+    return response;
   }
 }
 
