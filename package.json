@@ -31,9 +31,9 @@
     "babel-preset-stage-3": "6.17.0",
     "basic-auth": "1.0.4",
     "bluebird": "3.4.6",
-    "debug": "2.2.0",
+    "debug": "2.6.9",
     "dotenv": "2.0.0",
-    "lodash": "4.15.0",
+    "lodash": "4.17.5",
     "mysql2": "git+https://github.com/mirabalj/node-mysql2.git",
     "rimraf": "2.5.4"
   },
